@@ -43,7 +43,7 @@ class MyWorld(miniform.resource.world.MiniWorld):
     def __init__(self, app):
         super().__init__(
             app,
-            miniform.resource.world.MiniTilemap(self, [32, 32]),
+            miniform.resource.world.MiniTileMap(self, [32, 32]),
             miniform.resource.world.MiniGridPartition(app, self, [32, 32])
         )
 
@@ -68,11 +68,11 @@ class MyWorld(miniform.resource.world.MiniWorld):
         if self.app.events.mouse_held(self.app.mouse.LeftClick):
             self.app.render_proc.draw_line(self.player.center, self.app.mouse.pos.world, [0, 0, 255])
             self.app.render_proc.draw_circle(self.player.center, 4, [0, 0, 255])
-            self.tile_map.set_tile(self.app.mouse.pos.world, 1)
+            self.tile_map.set_tile(0, self.app.mouse.pos.world, 0, 0)
         elif self.app.events.mouse_held(self.app.mouse.RightClick):
             self.app.render_proc.draw_line(self.player.center, self.app.mouse.pos.world, [255, 0, 0])
             self.app.render_proc.draw_circle(self.player.center, 4, [255, 0, 0])
-            self.tile_map.rem_tile(self.app.mouse.pos.world)
+            self.tile_map.rem_tile(0, self.app.mouse.pos.world)
 
 class MyApp(miniform.app.MiniApp):
     def __init__(self) -> None:
